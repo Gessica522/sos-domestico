@@ -466,7 +466,7 @@ a { color: var(--blue-700); }
   top: 0;
   right: 0;
   height: 100vh;
-  height: 100dvh; /* ← adicione esta linha */
+  height: 100dvh;
   width: 420px;
   max-width: 92vw;
   background: var(--white);
@@ -508,6 +508,13 @@ a { color: var(--blue-700); }
 .chat-drawer-body {
   flex: 1;
   min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+#n8nChatMount {
+  height: 100%;
+  width: 100%;
 }
 
 .chat-drawer-backdrop {
