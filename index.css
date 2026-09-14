@@ -466,7 +466,7 @@ a { color: var(--blue-700); }
   top: 0;
   right: 0;
   height: 100vh;
-  height: 100dvh;
+  height: 100dvh; /* ← adicione esta linha */
   width: 420px;
   max-width: 92vw;
   background: var(--white);
@@ -508,13 +508,6 @@ a { color: var(--blue-700); }
 .chat-drawer-body {
   flex: 1;
   min-height: 0;
-  height: 100%;
-  overflow: hidden;
-}
-
-#n8nChatMount {
-  height: 100%;
-  width: 100%;
 }
 
 .chat-drawer-backdrop {
@@ -579,4 +572,253 @@ a { color: var(--blue-700); }
   .footer-grid { grid-template-columns: 1fr; }
 
   .emergency-btn { width: 100%; justify-content: center; }
+}
+
+/* =========================================================
+   PATCH RESPONSIVO — Chatbot / celulares / notebooks
+   Compatível com Android, iPhone/iPad, Windows e macOS
+   ========================================================= */
+
+/* Evita problemas de largura e rolagem horizontal */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Container do chat */
+.chat-drawer {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(420px, 100vw);
+  max-width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #fff;
+  overflow: hidden;
+  overscroll-behavior: contain;
+
+  z-index: 2147483000;
+
+  /* Compatibilidade com navegadores móveis */
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+
+  -webkit-transition: -webkit-transform 0.28s ease;
+  transition: transform 0.28s ease;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.chat-drawer.open {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Cabeçalho não encolhe em telas pequenas */
+.chat-drawer-header {
+  flex: 0 0 auto;
+  min-height: 64px;
+  padding-top: max(12px, env(safe-area-inset-top));
+  padding-right: max(16px, env(safe-area-inset-right));
+  padding-bottom: 12px;
+  padding-left: max(16px, env(safe-area-inset-left));
+  position: relative;
+  z-index: 2;
+}
+
+/* Área que realmente contém o chatbot */
+.chat-drawer-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+}
+
+/*
+  Se o chatbot n8n for inserido como iframe ou elemento interno,
+  ele ocupará toda a área disponível em vez de ficar com altura
+  fixa/menor no Android.
+*/
+.chat-drawer-body > iframe,
+.chat-drawer-body iframe,
+.chat-drawer-body > .chat,
+.chat-drawer-body > div {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+  border: 0;
+}
+
+/* Botão fechar confortável para toque */
+.chat-drawer-close {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Fundo sempre atrás do drawer e acima da página */
+.chat-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+
+  z-index: 2147482000;
+
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Botões/links não ficam pequenos demais no toque */
+button,
+a,
+input,
+textarea,
+select {
+  touch-action: manipulation;
+}
+
+/* Tablets e notebooks menores */
+@media (max-width: 900px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .hero {
+    padding-top: 48px;
+    padding-bottom: 56px;
+  }
+
+  .section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .header-bar {
+    height: 64px;
+  }
+
+  .main-nav {
+    top: 64px;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+
+  .hero {
+    padding: 40px 0 48px;
+  }
+
+  .section {
+    padding: 48px 0;
+  }
+
+  /*
+    No celular o chatbot usa 100% da tela.
+    Isso evita que o drawer fique parcialmente fora da viewport.
+  */
+  .chat-drawer {
+    width: 100vw;
+    max-width: 100vw;
+    right: 0;
+    left: auto;
+    border-radius: 0;
+  }
+
+  .chat-drawer-body {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .chat-drawer-header {
+    min-height: 60px;
+  }
+}
+
+/* Celulares muito estreitos */
+@media (max-width: 380px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .brand-name {
+    font-size: 0.95rem;
+  }
+
+  .chat-drawer-header {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* iPhone/Android com área segura */
+@supports (padding: max(0px)) {
+  .chat-drawer {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .chat-drawer-header {
+    padding-top: max(12px, env(safe-area-inset-top));
+  }
+}
+
+/* Evita que a página por trás role quando o drawer estiver aberto */
+body.chat-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* Fallback para navegadores antigos que não suportam dvh */
+@supports not (height: 100dvh) {
+  .chat-drawer,
+  .chat-drawer-backdrop {
+    height: 100vh;
+  }
 }
