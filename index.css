@@ -466,6 +466,7 @@ a { color: var(--blue-700); }
   top: 0;
   right: 0;
   height: 100vh;
+  height: 100dvh; /* ← adicione esta linha */
   width: 420px;
   max-width: 92vw;
   background: var(--white);
