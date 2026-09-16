@@ -124,6 +124,34 @@ const ACCIDENTS = [
       "Se possível, observe as características do animal para informar no atendimento."
     ],
     warning: "Procure atendimento médico imediatamente, mesmo que os sintomas pareçam leves no início."
+  },
+  {
+    id: "hemorragia",
+    title: "Hemorragia externa",
+    summary: "Sangramento intenso e visível causado por ferimentos.",
+    icon: `<path d="M24 6C16 18 10 26 10 32a14 14 0 0028 0c0-6-6-14-14-26z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>`,
+    steps: [
+      "Se possível, use luvas ou proteja as mãos antes de socorrer.",
+      "Aplique pressão direta e firme sobre o ferimento com um pano limpo ou gaze.",
+      "Não retire o pano se ele encharcar; coloque outro por cima e mantenha a pressão.",
+      "Eleve o membro ferido acima do nível do coração, se possível.",
+      "Mantenha a pessoa deitada e aquecida enquanto aguarda socorro."
+    ],
+    warning: "Ligue para o SAMU (192) se o sangramento for abundante, não parar com pressão direta ou houver sinais de choque (palidez, tontura, pulso fraco)."
+  },
+  {
+    id: "convulsao",
+    title: "Convulsão e epilepsia",
+    summary: "Crises convulsivas com perda de consciência ou movimentos involuntários.",
+    icon: `<path d="M24 6v8M12 14l6 6M36 14l-6 6M8 26h8l4-8 8 16 4-8h8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>`,
+    steps: [
+      "Proteja a pessoa de quedas e afaste objetos que possam machucá-la.",
+      "Coloque algo macio sob a cabeça e vire-a de lado, se possível.",
+      "Não segure a pessoa nem tente imobilizar seus movimentos.",
+      "Nunca coloque nada na boca da pessoa durante a crise.",
+      "Cronometre a duração da crise e observe a respiração após ela cessar."
+    ],
+    warning: "Ligue para o SAMU (192) se a crise durar mais de 5 minutos, se repetir em seguida, ou se a pessoa não recuperar a consciência normalmente depois."
   }
 ];
 
