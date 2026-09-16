@@ -53,23 +53,6 @@ html {
   scroll-padding-top: 84px;
 }
 
-/* Evita rolagem horizontal e ajuste automático de texto em mobile */
-html, body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-body {
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-
-/* Alvos de toque confortáveis em qualquer celular */
-button, a, input, textarea, select {
-  touch-action: manipulation;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
@@ -200,17 +183,6 @@ a { color: var(--blue-700); }
   font-weight: 700 !important;
 }
 
-.btn-sm {
-  padding: 8px 16px;
-  font-size: 0.88rem;
-}
-
-.header-assistant-icon {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-}
-
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -264,41 +236,6 @@ a { color: var(--blue-700); }
 .btn-ghost:hover { background: var(--blue-100); }
 
 /* =========================================================
-   Hero
-   ========================================================= */
-.hero {
-  padding: 64px 0 72px;
-  background: linear-gradient(180deg, var(--blue-100) 0%, var(--white) 100%);
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 48px;
-  align-items: center;
-}
-
-.hero-lede {
-  color: var(--ink-soft);
-  font-size: 1.08rem;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 8px;
-}
-
-.hero-illustration {
-  width: 100%;
-  height: auto;
-  max-width: 360px;
-  display: block;
-  margin: 0 auto;
-}
-
-/* =========================================================
    Seções gerais
    ========================================================= */
 .section {
@@ -316,52 +253,6 @@ a { color: var(--blue-700); }
 }
 
 .section-lede.light { color: rgba(255,255,255,0.88); }
-
-/* Princípios */
-.principles-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin: 36px 0 32px;
-}
-
-.principle-card {
-  background: var(--white);
-  border: 1px solid rgba(15, 48, 87, 0.09);
-  border-radius: var(--radius-md);
-  padding: 22px;
-}
-
-.principle-card .icon {
-  width: 34px;
-  height: 34px;
-  color: var(--blue-700);
-  margin-bottom: 12px;
-}
-
-.principle-card h3 { margin-bottom: 6px; }
-.principle-card p { font-size: 0.94rem; color: var(--ink-soft); margin: 0; }
-
-/* Alertas */
-.alert {
-  border-radius: var(--radius-md);
-  padding: 16px 20px;
-  font-size: 0.95rem;
-  border: 1px solid transparent;
-  max-width: none;
-}
-
-.alert-info {
-  background: var(--info-bg);
-  border-color: var(--info-border);
-  color: var(--blue-900);
-}
-
-.alert-warning {
-  background: var(--amber-bg);
-  border-color: var(--amber-border);
-  color: var(--amber-text);
-}
 
 /* =========================================================
    Cards de acidentes
@@ -396,6 +287,85 @@ a { color: var(--blue-700); }
   color: var(--ink-soft);
   font-size: 0.95rem;
   margin: 0;
+}
+
+/* =========================================================
+   Destaque do chatbot
+   ========================================================= */
+.cta-chat-section {
+  background: var(--blue-900);
+  text-align: center;
+}
+
+.cta-chat {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cta-chat-icon {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  margin-bottom: 18px;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.3));
+}
+
+.cta-chat-section h2 {
+  color: var(--white);
+}
+
+.cta-chat-lede {
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0 auto 30px;
+}
+
+.cta-chat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  cursor: pointer;
+  background: var(--red-emergency);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.12rem;
+  padding: 20px 44px;
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+  animation: cta-chat-pulse 2.6s ease-in-out infinite;
+  transition: background-color 0.15s ease, transform 0.12s ease;
+}
+.cta-chat-btn-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  animation: cta-chat-icon-wiggle 2.6s ease-in-out infinite;
+}
+.cta-chat-btn:hover {
+  background: var(--red-emergency-dark);
+  animation-play-state: paused;
+}
+.cta-chat-btn:hover .cta-chat-btn-icon { animation-play-state: paused; }
+.cta-chat-btn:active { transform: translateY(1px); }
+
+@keyframes cta-chat-icon-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+@keyframes cta-chat-pulse {
+  0%, 100% {
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 0 10px rgba(193, 39, 45, 0.22);
+    transform: translateY(-6px);
+  }
 }
 
 /* =========================================================
@@ -456,18 +426,8 @@ a { color: var(--blue-700); }
   font-size: 0.92rem;
 }
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr 1.3fr;
-  gap: 32px;
-}
-
-.footer-brand {
-  font-family: var(--font-display);
-  color: var(--white);
-  font-weight: 700;
-  font-size: 1.1rem;
-  margin-bottom: 8px;
+.footer-single {
+  max-width: 60ch;
 }
 
 .footer-heading {
@@ -476,45 +436,32 @@ a { color: var(--blue-700); }
   margin-bottom: 10px;
 }
 
-.site-footer a {
-  display: block;
-  color: var(--blue-300);
-  text-decoration: none;
-  margin-bottom: 8px;
-}
-.site-footer a:hover { color: var(--white); }
-
-.site-footer p { max-width: 42ch; }
+.site-footer p { margin: 0; }
 
 /* =========================================================
    Painel do chatbot (n8n)
-   Compatível com Android, iPhone/iPad, Windows e macOS
    ========================================================= */
 .chat-drawer {
   position: fixed;
   top: 0;
   right: 0;
   height: 100vh;
-  height: 100dvh; /* altura real da tela em navegadores mobile */
+  height: 100dvh;
   width: 420px;
-  max-width: 100vw;
+  max-width: 92vw;
   background: var(--white);
   box-shadow: -12px 0 32px rgba(15, 48, 87, 0.22);
   z-index: 1100;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  overscroll-behavior: contain;
-  transform: translate3d(100%, 0, 0);
+  transform: translateX(100%);
   transition: transform 0.28s ease;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  will-change: transform;
+  padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
 }
 
 .chat-drawer.open {
-  transform: translate3d(0, 0, 0);
+  transform: translateX(0);
 }
 
 .chat-drawer-header {
@@ -522,7 +469,6 @@ a { color: var(--blue-700); }
   align-items: center;
   justify-content: space-between;
   padding: 16px 20px;
-  padding-top: max(16px, env(safe-area-inset-top));
   background: var(--blue-900);
   color: var(--white);
   font-family: var(--font-display);
@@ -534,50 +480,21 @@ a { color: var(--blue-700); }
   background: rgba(255, 255, 255, 0.12);
   border: none;
   color: var(--white);
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  min-height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   cursor: pointer;
   font-size: 0.95rem;
-  -webkit-tap-highlight-color: transparent;
 }
 
-/* Este mesmo elemento recebe o widget do n8n (id="n8nChatMount") */
 .chat-drawer-body {
-  flex: 1 1 auto;
+  flex: 1;
   min-height: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Garante que o widget do n8n (iframe ou div interno) preencha
-   toda a área disponível, mesmo em navegadores mobile mais antigos */
-.chat-drawer-body > iframe,
-.chat-drawer-body iframe,
-.chat-drawer-body > div {
-  width: 100%;
-  max-width: 100%;
-  height: 100%;
-  min-height: 0;
-  flex: 1 1 auto;
-  border: 0;
 }
 
 .chat-drawer-backdrop {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
-  height: 100dvh;
   background: rgba(15, 48, 87, 0.4);
   z-index: 1050;
   opacity: 0;
@@ -590,31 +507,25 @@ a { color: var(--blue-700); }
   pointer-events: auto;
 }
 
-@media (max-width: 560px) {
-  .chat-drawer { width: 100vw; max-width: 100vw; border-radius: 0; }
-}
-
-@media (max-width: 400px) {
-  .header-right { gap: 10px; }
-  .btn-sm { padding: 8px 12px; font-size: 0.82rem; }
-  .brand-name { font-size: 1rem; }
-}
-
-/* Fallback para navegadores antigos sem suporte a dvh */
-@supports not (height: 100dvh) {
-  .chat-drawer,
-  .chat-drawer-backdrop {
+@media (max-width: 680px) {
+  .chat-drawer {
+    width: 100vw;
+    max-width: 100vw;
     height: 100vh;
+    height: 100dvh;
   }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .cta-chat-btn { width: 100%; padding: 18px 24px; font-size: 1rem; }
 }
 
 /* =========================================================
    Responsivo
    ========================================================= */
 @media (max-width: 900px) {
-  .principles-grid { grid-template-columns: repeat(2, 1fr); }
-  .cards-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .cards-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 760px) {
@@ -636,22 +547,15 @@ a { color: var(--blue-700); }
   .main-nav.open { display: flex; }
   .main-nav a { width: 100%; padding: 12px 0; border-bottom: 1px solid rgba(15,48,87,0.06); }
 
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-art { order: -1; max-width: 260px; margin: 0 auto; }
-
-  .principles-grid { grid-template-columns: 1fr; }
-  .cards-grid { grid-template-columns: 1fr; }
-
-  .footer-grid { grid-template-columns: 1fr; }
+  .cards-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .accident-card { padding: 12px 8px; border-radius: 14px; }
+  .accident-card .icon { width: 26px; height: 26px; margin-bottom: 8px; }
+  .accident-card h3 { font-size: 0.8rem; margin-bottom: 4px; line-height: 1.2; }
+  .accident-card p { display: none; }
 
   .emergency-btn { width: 100%; justify-content: center; }
-}
 
-/* Celulares muito estreitos (iPhone SE, Android compactos) */
-@media (max-width: 380px) {
-  .container { padding-left: 12px; padding-right: 12px; }
-  .brand-name { font-size: 0.95rem; }
-  .chat-drawer-header { padding-left: 12px; padding-right: 12px; }
+  .cta-chat-icon { width: 68px; height: 68px; }
 }
 
 </style>
@@ -674,19 +578,10 @@ a { color: var(--blue-700); }
     <div class="header-right">
       <nav class="main-nav" id="navMenu" aria-label="Navegação principal">
         <a href="#topo">Início</a>
-        <a href="#primeiros-socorros">Primeiros Socorros</a>
         <a href="#acidentes">Acidentes Domésticos</a>
+        <a href="#assistente">Assistente</a>
         <a href="#emergencia" class="nav-emergency">Emergência</a>
       </nav>
-
-      <button type="button" class="btn btn-primary btn-sm header-assistant js-open-chat" id="chatbotLink">
-        <svg class="header-assistant-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="2"/>
-          <path d="M5.6 5.6l3.2 3.2M18.4 5.6l-3.2 3.2M5.6 18.4l3.2-3.2M18.4 18.4l-3.2-3.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <span><span>Converse com nosso Chat</span></span>
-      </button>
 
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menu de navegação">
         <span></span><span></span><span></span>
@@ -697,76 +592,30 @@ a { color: var(--blue-700); }
 
 <main id="conteudo-principal">
 
-  <!-- ===================== HERO ===================== -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-text">
-        <h1>Informação rápida para agir com segurança.</h1>
-        <p class="hero-lede">
-          Orientações iniciais, claras e baseadas em protocolos reconhecidos, para os acidentes
-          mais comuns dentro de casa. O SOS Doméstico está sempre disponível no topo da página.
-        </p>
-        <div class="hero-actions">
-          <a href="#emergencia" class="btn btn-ghost">Preciso de ajuda agora</a>
-        </div>
-      </div>
-
-      <div class="hero-art" aria-hidden="true">
-        <svg viewBox="0 0 320 280" class="hero-illustration">
-          <path d="M40 150 L160 60 L280 150 V240 H40 Z" fill="var(--blue-100)" stroke="var(--blue-700)" stroke-width="3" stroke-linejoin="round"/>
-          <rect x="70" y="150" width="180" height="90" fill="#fff" stroke="var(--blue-700)" stroke-width="3"/>
-          <path d="M25 158 L160 50 L295 158" fill="none" stroke="var(--blue-900)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="160" cy="196" r="34" fill="var(--blue-500)"/>
-          <path d="M160 178 V214 M142 196 H178" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
-          <path d="M108 210 q52 -30 104 0" fill="none" stroke="var(--blue-300)" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
-        </svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== PRIMEIROS SOCORROS (visão geral) ===================== -->
-  <section class="section" id="primeiros-socorros">
-    <div class="container">
-      <h2>O que fazer antes de tudo</h2>
-      <p class="section-lede">
-        Primeiros socorros são os cuidados iniciais oferecidos a alguém que se machucou ou passou mal,
-        até a chegada de atendimento especializado. Alguns princípios valem para qualquer acidente doméstico:
+  <!-- ===================== DESTAQUE DO CHATBOT ===================== -->
+  <section class="section cta-chat-section" id="assistente">
+    <div class="container cta-chat">
+      <img src="data:image/png;base64,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" alt="" class="cta-chat-icon">
+      <h2>Não sabe o que fazer agora?</h2>
+      <p class="cta-chat-lede">
+        Conte a situação para o SOS Doméstico e receba orientação inicial imediata sobre acidentes domésticos.
       </p>
-
-      <div class="principles-grid">
-        <div class="principle-card">
-          <svg viewBox="0 0 48 48" class="icon" aria-hidden="true"><circle cx="24" cy="24" r="19" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 14v12l8 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <h3>Mantenha a calma</h3>
-          <p>Respire e avalie a cena antes de agir. Decisões apressadas podem piorar a situação.</p>
-        </div>
-        <div class="principle-card">
-          <svg viewBox="0 0 48 48" class="icon" aria-hidden="true"><path d="M24 6l16 8v10c0 10-7 16-16 18-9-2-16-8-16-18V14z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
-          <h3>Garanta a segurança</h3>
-          <p>Verifique se o local é seguro para você e para a vítima antes de se aproximar.</p>
-        </div>
-        <div class="principle-card">
-          <svg viewBox="0 0 48 48" class="icon" aria-hidden="true"><path d="M8 24h8l4-10 8 20 4-10h8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <h3>Avalie o estado da pessoa</h3>
-          <p>Observe consciência, respiração e sangramentos visíveis antes de decidir o próximo passo.</p>
-        </div>
-        <div class="principle-card">
-          <svg viewBox="0 0 48 48" class="icon" aria-hidden="true"><rect x="12" y="8" width="24" height="32" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M19 18h10M19 25h10M19 32h6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
-          <h3>Saiba o seu limite</h3>
-          <p>Não realize procedimentos que você não domina. Ligue para a emergência quando tiver dúvida.</p>
-        </div>
-      </div>
-
-      <div class="alert alert-info">
-        <strong>Importante:</strong> as informações deste site são orientações iniciais e educativas.
-        Elas não substituem a avaliação de médicos, enfermeiros ou socorristas.
-      </div>
+      <button type="button" class="cta-chat-btn js-open-chat" id="chatbotLink">
+        <svg class="cta-chat-btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 4h16a2 2 0 012 2v9a2 2 0 01-2 2H9l-5 4v-4H4a2 2 0 01-2-2V6a2 2 0 012-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <circle cx="8.5" cy="10.5" r="1.15" fill="currentColor"/>
+          <circle cx="12" cy="10.5" r="1.15" fill="currentColor"/>
+          <circle cx="15.5" cy="10.5" r="1.15" fill="currentColor"/>
+        </svg>
+        Conversar com o SOS Doméstico
+      </button>
     </div>
   </section>
 
   <!-- ===================== ACIDENTES DOMÉSTICOS ===================== -->
   <section class="section section-alt" id="acidentes">
     <div class="container">
-      <h2>Acidentes domésticos mais comuns</h2>
+      <h2>Acidentes domésticos abordados no chatbot</h2>
       <p class="section-lede">Situações mais frequentes em casa. Para orientação passo a passo, fale com o SOS Doméstico.</p>
 
       <div class="cards-grid" id="cardsGrid">
@@ -802,7 +651,7 @@ a { color: var(--blue-700); }
 
       <p class="desktop-call-note" id="desktopCallNote" hidden>
         Este computador pode não conseguir iniciar chamadas telefônicas. Utilize um celular ou outro
-        telefone disponível para ligar para 192 ou 193.
+        telefone disponível para ligar.
       </p>
     </div>
   </section>
@@ -811,22 +660,10 @@ a { color: var(--blue-700); }
 
 <!-- ===================== RODAPÉ ===================== -->
 <footer class="site-footer">
-  <div class="container footer-grid">
-    <div>
-      <p class="footer-brand">SOS Doméstico</p>
-      <p>Orientações educativas de primeiros socorros para acidentes domésticos, com apoio do SOS Doméstico, assistente de IA.</p>
-    </div>
-    <div>
-      <p class="footer-heading">Acesso rápido</p>
-      <a href="#" class="js-open-chat">Conversar com o SOS Doméstico</a>
-      <a href="tel:192">SAMU — 192</a>
-      <a href="tel:193">Corpo de Bombeiros — 193</a>
-    </div>
-    <div>
-      <p class="footer-heading">Aviso</p>
-      <p>Conteúdo com finalidade exclusivamente educativa e informativa. Não substitui diagnóstico,
-        orientação ou atendimento de profissionais de saúde.</p>
-    </div>
+  <div class="container footer-single">
+    <p class="footer-heading">Aviso</p>
+    <p>Conteúdo com finalidade exclusivamente educativa e informativa. Não substitui diagnóstico,
+      orientação ou atendimento de profissionais de saúde.</p>
   </div>
 </footer>
 
@@ -849,8 +686,9 @@ a { color: var(--blue-700); }
   import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
   createChat({
-    // URL de produção do Webhook / Chat Trigger no n8n.
-    webhookUrl: 'https://ufratcc2026.app.n8n.cloud/webhook/primeiros-socorros-chat/chat',
+    // Substitua pela URL de produção do seu Webhook / Chat Trigger no n8n.
+    // Exemplo: https://SEU-N8N.app.n8n.cloud/webhook/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/chat
+    webhookUrl: 'SUBSTITUA_PELA_URL_DO_WEBHOOK_N8N',
 
     target: '#n8nChatMount',
     mode: 'fullscreen', // preenche o painel lateral que já montamos no site
@@ -876,8 +714,11 @@ a { color: var(--blue-700); }
    SOS Doméstico — script principal
    Seções: 1) Menu mobile  2) Dados dos acidentes  3) Cards informativos
            4) Painel do chatbot (abre/fecha; o widget do n8n é
-              inicializado à parte, em index.html)
+              inicializado à parte, acima)
            5) Aviso de chamada em desktop
+   Este script também está disponível separadamente em script.js,
+   mas fica embutido aqui para garantir que a página funcione mesmo
+   quando aberta diretamente pelo navegador (protocolo file://).
    ========================================================= */
 
 /* ---------- 1) Menu mobile ---------- */
@@ -998,6 +839,34 @@ const ACCIDENTS = [
       "Se possível, observe as características do animal para informar no atendimento."
     ],
     warning: "Procure atendimento médico imediatamente, mesmo que os sintomas pareçam leves no início."
+  },
+  {
+    id: "hemorragia",
+    title: "Hemorragia externa",
+    summary: "Sangramento intenso e visível causado por ferimentos.",
+    icon: `<path d="M24 6C16 18 10 26 10 32a14 14 0 0028 0c0-6-6-14-14-26z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>`,
+    steps: [
+      "Se possível, use luvas ou proteja as mãos antes de socorrer.",
+      "Aplique pressão direta e firme sobre o ferimento com um pano limpo ou gaze.",
+      "Não retire o pano se ele encharcar; coloque outro por cima e mantenha a pressão.",
+      "Eleve o membro ferido acima do nível do coração, se possível.",
+      "Mantenha a pessoa deitada e aquecida enquanto aguarda socorro."
+    ],
+    warning: "Ligue para o SAMU (192) se o sangramento for abundante, não parar com pressão direta ou houver sinais de choque (palidez, tontura, pulso fraco)."
+  },
+  {
+    id: "convulsao",
+    title: "Convulsão e epilepsia",
+    summary: "Crises convulsivas com perda de consciência ou movimentos involuntários.",
+    icon: `<path d="M24 6v8M12 14l6 6M36 14l-6 6M8 26h8l4-8 8 16 4-8h8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>`,
+    steps: [
+      "Proteja a pessoa de quedas e afaste objetos que possam machucá-la.",
+      "Coloque algo macio sob a cabeça e vire-a de lado, se possível.",
+      "Não segure a pessoa nem tente imobilizar seus movimentos.",
+      "Nunca coloque nada na boca da pessoa durante a crise.",
+      "Cronometre a duração da crise e observe a respiração após ela cessar."
+    ],
+    warning: "Ligue para o SAMU (192) se a crise durar mais de 5 minutos, se repetir em seguida, ou se a pessoa não recuperar a consciência normalmente depois."
   }
 ];
 
