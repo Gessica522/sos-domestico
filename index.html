@@ -58,12 +58,17 @@ html {
   * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--ink);
   background: var(--white);
   line-height: 1.55;
+  width: 100%;
 }
 
 h1, h2, h3 {
