@@ -5,6 +5,43 @@
    3) Envio automático da mensagem ao tocar em um chip
    ========================================================= */
 
+/* ---------- Referências usadas como base do conteúdo (edite aqui) ---------- */
+const REFERENCES = [
+  "UNIFAP; Infância Segura; SAMU SP; FIOCRUZ; Heleno Proveti",
+  "UNIFAP; Infância Segura",
+  "UNIFAP; Infância Segura; SAMU SP; FIOCRUZ",
+  "Infância Segura; FIOCRUZ; Heleno Proveti",
+  "UNIFAP; SAMU SP; FIOCRUZ"
+];
+
+(function initReferences() {
+  const trigger = document.getElementById("refsTriggerBtn");
+  const overlay = document.getElementById("refsModalOverlay");
+  const closeBtn = document.getElementById("refsModalCloseBtn");
+  const list = document.getElementById("refsList");
+  if (!trigger || !overlay || !closeBtn || !list) return;
+
+  list.innerHTML = REFERENCES.map((ref) => `<li>${ref}</li>`).join("");
+
+  function openRefs() {
+    overlay.hidden = false;
+    closeBtn.focus();
+  }
+  function closeRefs() {
+    overlay.hidden = true;
+    trigger.focus();
+  }
+
+  trigger.addEventListener("click", openRefs);
+  closeBtn.addEventListener("click", closeRefs);
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) closeRefs();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !overlay.hidden) closeRefs();
+  });
+})();
+
 const TOPICS = [
   { title: "Queimadura", prompt: "Uma pessoa se queimou, o que eu faço?" },
   { title: "Corte / sangramento", prompt: "Uma pessoa se cortou e está sangrando, o que eu faço?" },
