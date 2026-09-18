@@ -7,11 +7,22 @@
 
 /* ---------- Referências usadas como base do conteúdo (edite aqui) ---------- */
 const REFERENCES = [
-  "UNIFAP; Infância Segura; SAMU SP; FIOCRUZ; Heleno Proveti",
-  "UNIFAP; Infância Segura",
-  "UNIFAP; Infância Segura; SAMU SP; FIOCRUZ",
-  "Infância Segura; FIOCRUZ; Heleno Proveti",
-  "UNIFAP; SAMU SP; FIOCRUZ"
+  {
+    text: "UNIVERSIDADE FEDERAL DO AMAPÁ. Guia de primeiros socorros. Macapá: UNIFAP; MEC/Proleei, [20--?].",
+    url: "https://www.gov.br/mec/pt-br/proleei/arquivos/GUIAPRIMEIROSSOCORROSLEEINORTEUNIFAP.pdf"
+  },
+  {
+    text: "TORRES, Ana Amélia Soares. Guia prático de primeiros socorros: para pais, professores e cuidadores. [S. l.]: Instituto Infância Segura, [2020?].",
+    url: "https://enfermagemndi.paginas.ufsc.br/files/2020/09/Guia-pr%C3%A1tico-Primeiros-Socorros.pdf"
+  },
+  {
+    text: "LOPES, Cássia Oliveira. Manual de primeiros socorros para leigos: suporte básico de vida. São Paulo: Secretaria Municipal da Saúde, SAMU-192, 2022. 62 p.",
+    url: "https://drive.prefeitura.sp.gov.br/cidade/secretarias/upload/saude/MANUAL_PRIMEIROS_SOCORROS_PARA_LEIGOS.pdf"
+  },
+  {
+    text: "CARDOSO, Telma Abdalla de Oliveira. Manual de primeiros socorros. Rio de Janeiro: Fundação Oswaldo Cruz (Fiocruz), 2003. 170 p.",
+    url: "https://fiocruz.br/biosseguranca/Bis/manuais/biosseguranca/manualdeprimeirossocorros.pdf"
+  }
 ];
 
 (function initReferences() {
@@ -21,7 +32,9 @@ const REFERENCES = [
   const list = document.getElementById("refsList");
   if (!trigger || !overlay || !closeBtn || !list) return;
 
-  list.innerHTML = REFERENCES.map((ref) => `<li>${ref}</li>`).join("");
+  list.innerHTML = REFERENCES.map((ref) => `
+    <li>${ref.text} Disponível em: <a href="${ref.url}" target="_blank" rel="noopener noreferrer">${ref.url}</a>. Acesso em: 18 set. 2026.</li>
+  `).join("");
 
   function openRefs() {
     overlay.hidden = false;
