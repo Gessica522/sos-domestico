@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>SOS Doméstico — Primeiros socorros em acidentes domésticos</title>
-<meta name="description" content="Converse com o SOS Doméstico, assistente de IA com orientação inicial de primeiros socorros para acidentes domésticos.">
+<title>SOS Acidentes Domésticos — Orientação inicial de primeiros socorros</title>
+<meta name="description" content="Converse com o SOS Acidentes Domésticos, assistente de IA com orientação inicial de primeiros socorros para acidentes domésticos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* =========================================================
-   SOS Doméstico — estilos
+   SOS Acidentes Domésticos — estilos
    Duas telas: 1) Capa (botão único de entrada)
                2) Chat em tela cheia (com ligação rápida e chips)
    ========================================================= */
@@ -412,7 +412,7 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; }
           <rect x="51.5" y="78.5" width="17" height="6" rx="2" fill="#FFFFFF"/>
         </svg>
       </div>
-      <h1>SOS Doméstico</h1>
+      <h1>SOS Acidentes Domésticos</h1>
       <p class="cover-tagline">Orientação inicial para acidentes domésticos.</p>
     </div>
 
@@ -440,7 +440,7 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; }
 </div>
 
 <!-- ===================== TELA 2 — CHAT EM TELA CHEIA ===================== -->
-<div class="chat-screen" id="chatScreen" hidden role="dialog" aria-modal="true" aria-label="Chat com o SOS Doméstico">
+<div class="chat-screen" id="chatScreen" hidden role="dialog" aria-modal="true" aria-label="Chat com o SOS Acidentes Domésticos">
   <header class="chat-header">
     <div class="chat-header-brand">
       <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
@@ -451,7 +451,7 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; }
         <rect x="56.5" y="71" width="7" height="21" rx="2.5" fill="#FFFFFF"/>
         <rect x="49.5" y="78" width="21" height="7" rx="2.5" fill="#FFFFFF"/>
       </svg>
-      <span>SOS Doméstico</span>
+      <span>SOS Acidentes Domésticos</span>
     </div>
     <button type="button" id="chatBackBtn" class="chat-back-btn" aria-label="Fechar chat e voltar">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -523,7 +523,7 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; }
       showWelcomeScreen: false,
       defaultLanguage: 'pt',
       initialMessages: [
-        'Olá! Sou o SOS Doméstico. No que posso ajudar hoje?.'
+        'Olá! Sou o SOS Acidentes Domésticos. No que posso ajudar hoje?.'
       ],
       i18n: {
         pt: {
@@ -540,7 +540,7 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; }
 
 <script>
 /* =========================================================
-   SOS Doméstico — script principal
+   SOS Acidentes Domésticos — script principal
    1) Dados dos assuntos rápidos (chips) + textos enviados ao chat
    2) Alternância entre a capa e a tela do chat
    3) Envio automático da mensagem ao tocar em um chip
