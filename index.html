@@ -294,31 +294,29 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; }
   right: 14px;
   bottom: calc(10px + env(safe-area-inset-bottom));
   z-index: 500;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  border: none;
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.55);
   font-family: var(--font-body);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  text-decoration: none;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: color 0.15s ease;
 }
 .refs-trigger:hover,
-.refs-trigger:focus-visible { background: rgba(255, 255, 255, 0.22); color: var(--white); outline: none; }
+.refs-trigger:focus-visible { color: rgba(255, 255, 255, 0.85); outline: none; }
 
 /* dentro da tela de chat (fundo branco) o link precisa de outro contraste */
 .chat-screen .refs-trigger {
-  background: var(--blue-100);
-  border-color: rgba(15, 48, 87, 0.25);
-  color: var(--blue-900);
+  color: #9A9A9A;
 }
 .chat-screen .refs-trigger:hover,
-.chat-screen .refs-trigger:focus-visible { background: #DCEBF7; color: var(--blue-900); }
+.chat-screen .refs-trigger:focus-visible { color: #5A5A5A; }
+
 
 .refs-modal-overlay {
   position: fixed;
@@ -363,13 +361,22 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; }
   gap: 10px;
 }
 .refs-list li {
-  font-size: 0.88rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
   padding: 10px 12px;
-  background: var(--blue-100);
+  background: #F4F4F4;
   border-radius: 10px;
-  color: var(--blue-900);
-  font-weight: 600;
+  color: #6B6B6B;
+  font-weight: 400;
 }
+.refs-list li a {
+  color: #6B6B6B;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  word-break: break-all;
+}
+.refs-list li a:hover,
+.refs-list li a:focus-visible { color: #454545; }
 
 .refs-modal-close {
   margin-top: 18px;
@@ -485,6 +492,17 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; }
 
 <!-- Widget de chat do n8n (pacote oficial @n8n/chat via CDN) -->
 <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<style>
+  /* Tema do widget @n8n/chat: troca o balão verde padrão do usuário
+     por um azul leve, alinhado à paleta do app. */
+  #n8nChatMount {
+    --chat--message--user--background: var(--blue-500);
+    --chat--message--user--color: var(--white);
+    --chat--color-primary: var(--blue-500);
+    --chat--color-primary-shade-50: var(--blue-700);
+    --chat--color-primary-shade-100: var(--blue-700);
+  }
+</style>
 <script type="module">
   import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
@@ -530,11 +548,22 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; }
 
 /* ---------- Referências usadas como base do conteúdo (edite aqui) ---------- */
 const REFERENCES = [
-  "UNIFAP; Infância Segura; SAMU SP; FIOCRUZ; Heleno Proveti",
-  "UNIFAP; Infância Segura",
-  "UNIFAP; Infância Segura; SAMU SP; FIOCRUZ",
-  "Infância Segura; FIOCRUZ; Heleno Proveti",
-  "UNIFAP; SAMU SP; FIOCRUZ"
+  {
+    text: "UNIVERSIDADE FEDERAL DO AMAPÁ. Guia de primeiros socorros. Macapá: UNIFAP; MEC/Proleei, [20--?].",
+    url: "https://www.gov.br/mec/pt-br/proleei/arquivos/GUIAPRIMEIROSSOCORROSLEEINORTEUNIFAP.pdf"
+  },
+  {
+    text: "TORRES, Ana Amélia Soares. Guia prático de primeiros socorros: para pais, professores e cuidadores. [S. l.]: Instituto Infância Segura, [2020?].",
+    url: "https://enfermagemndi.paginas.ufsc.br/files/2020/09/Guia-pr%C3%A1tico-Primeiros-Socorros.pdf"
+  },
+  {
+    text: "LOPES, Cássia Oliveira. Manual de primeiros socorros para leigos: suporte básico de vida. São Paulo: Secretaria Municipal da Saúde, SAMU-192, 2022. 62 p.",
+    url: "https://drive.prefeitura.sp.gov.br/cidade/secretarias/upload/saude/MANUAL_PRIMEIROS_SOCORROS_PARA_LEIGOS.pdf"
+  },
+  {
+    text: "CARDOSO, Telma Abdalla de Oliveira. Manual de primeiros socorros. Rio de Janeiro: Fundação Oswaldo Cruz (Fiocruz), 2003. 170 p.",
+    url: "https://fiocruz.br/biosseguranca/Bis/manuais/biosseguranca/manualdeprimeirossocorros.pdf"
+  }
 ];
 
 (function initReferences() {
@@ -544,7 +573,9 @@ const REFERENCES = [
   const list = document.getElementById("refsList");
   if (!trigger || !overlay || !closeBtn || !list) return;
 
-  list.innerHTML = REFERENCES.map((ref) => `<li>${ref}</li>`).join("");
+  list.innerHTML = REFERENCES.map((ref) => `
+    <li>${ref.text} Disponível em: <a href="${ref.url}" target="_blank" rel="noopener noreferrer">${ref.url}</a>. Acesso em: 18 set. 2026.</li>
+  `).join("");
 
   function openRefs() {
     overlay.hidden = false;
